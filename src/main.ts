@@ -1,6 +1,8 @@
 /*
  * Providers provided by Angular
  */
+///<reference path="custom-typings.d.ts" />
+///<reference path="../typings/browser.d.ts" />
 import * as browser from 'angular2/platform/browser';
 import * as ngCore from 'angular2/core';
 import {

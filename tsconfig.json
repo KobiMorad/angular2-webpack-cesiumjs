@@ -14,9 +14,7 @@
   "filesGlob": [
     "./src/**/*.ts",
     "./test/**/*.ts",
-    "!./node_modules/**/*.ts",
-    "src/custom-typings.d.ts",
-    "typings/browser.d.ts"
+    "!./node_modules/**/*.ts"
   ],
   "awesomeTypescriptLoaderOptions": {
     "useCache": true,
