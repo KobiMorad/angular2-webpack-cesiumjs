@@ -3,6 +3,8 @@
  */
 ///<reference path="custom-typings.d.ts" />
 ///<reference path="../typings/browser.d.ts" />
+require('cesium/Source/Widgets/widgets.css');
+window['CESIUM_BASE_URL'] = './';
 import * as browser from 'angular2/platform/browser';
 import * as ngCore from 'angular2/core';
 import {
@@ -13,7 +15,9 @@ import {
 } from 'angular2/router';
 import {FORM_PROVIDERS} from 'angular2/common';
 import {HTTP_PROVIDERS} from 'angular2/http';
-
+//let BuildModuleUrl = require('cesium/Source/Core/buildModuleUrl');
+//console.log('buildModuleUrl', BuildModuleUrl);
+//BuildModuleUrl['setBaseUrl']('./');
 /*
  * App Component
  * our top level component that holds all of our components

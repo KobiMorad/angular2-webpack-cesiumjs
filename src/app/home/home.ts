@@ -3,6 +3,8 @@ import {FORM_DIRECTIVES} from 'angular2/common';
 
 import {Title} from './services/title';
 import {XLarge} from './directives/x-large';
+//import {Viewer} from 'cesium';
+var Viewer = require('cesium/Source/Widgets/Viewer/Viewer');
 
 @Component({
   // The selector is what angular internally uses
@@ -21,7 +23,7 @@ import {XLarge} from './directives/x-large';
   // We need to tell Angular's compiler which custom pipes are in our template.
   pipes: [ ],
   // Our list of styles in our component. We may add more to compose many styles together
-  styles: [ require('./home.css') ],
+  //styles: [ require('./home.css') ],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
   template: require('./home.html')
 })
@@ -30,12 +32,15 @@ export class Home {
   data = { value: '' };
   // TypeScript public modifiers
   constructor(public title: Title) {
-
+      //console.log(Viewer);
+      
   }
 
   ngOnInit() {
     console.log('hello `Home` component');
     // this.title.getData().subscribe(data => this.data = data);
+    let viewer = new Viewer('cesiumContainer');
+      
   }
 
 }

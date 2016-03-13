@@ -67,3 +67,5 @@ interface NodeRequire extends WebpackRequire {}
 interface ErrorConstructor extends ErrorStackTraceLimit {}
 interface NodeModule extends WebpackModule {}
 interface Global extends GlobalEnvironment  {}
+
+///<reference path="./cesium-typings/cesium.d.ts" />

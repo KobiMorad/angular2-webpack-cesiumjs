@@ -8,6 +8,7 @@ This seed repo serves as an Angular 2 starter for anyone looking to get up and r
 * End-to-end Angular 2 code using Protractor.
 * Type manager with Typings
 * Hot Module Replacement with Webpack
+* Visual Studio 2015 compatable
 
 ### Quick start
 > Clone/Download the repo then edit `app.ts` inside [`/src/app/app.ts`](/src/app/app.ts)

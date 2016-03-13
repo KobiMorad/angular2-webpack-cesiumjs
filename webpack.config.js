@@ -38,7 +38,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.ts', '.js']
+      extensions: ['', '.ts', '.js']
   },
 
   // Config for our build files
@@ -50,23 +50,30 @@ module.exports = {
   },
 
   module: {
+    unknownContextCritical: false,
     preLoaders: [
       // { test: /\.ts$/, loader: 'tslint-loader', exclude: [ helpers.root('node_modules') ] },
       // TODO(gdi2290): `exclude: [ helpers.root('node_modules/rxjs') ]` fixed with rxjs 5 beta.3 release
-      { test: /\.js$/, loader: "source-map-loader", exclude: [ helpers.root('node_modules/rxjs') ] }
+      { test: /\.js$/, loader: "source-map-loader", exclude: [helpers.root('node_modules/rxjs'), helpers.root('node_modules/cesium/Source')], }
     ],
     loaders: [
       // Support for .ts files.
-      { test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [ /\.(spec|e2e)\.ts$/ ] },
+      { test: /\.ts$/, loader: 'awesome-typescript-loader', exclude: [/\.(spec|e2e)\.ts$/] },
+
+      /*{ 
+        test: /[\\\/]node_modules[\\\/]cesium[\\\/]index\.js$/,
+        loader: "imports?this=>window!exports?window.Cesium" 
+      },*/
 
       // Support for *.json files.
       { test: /\.json$/,  loader: 'json-loader' },
 
       // Support for CSS as raw text
-      { test: /\.css$/,   loader: 'raw-loader' },
+      { test: /\.css$/,   loader: 'style!css' },
 
       // support for .html as raw text
-      { test: /\.html$/,  loader: 'raw-loader', exclude: [ helpers.root('src/index.html') ] }
+      { test: /\.html$/, loader: 'raw-loader', exclude: [helpers.root('src/index.html')] },
+      { test: /\.(png|gif|jpg|jpeg)$/, loader: 'file-loader' }
 
     ]
   },
@@ -76,9 +83,9 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(true),
     new webpack.optimize.CommonsChunkPlugin({ name: ['app', 'vendor', 'polyfills'], minChunks: Infinity }),
     // static assets
-    new CopyWebpackPlugin([ { from: 'src/assets', to: 'assets' } ]),
+    new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }, { from: helpers.root('node_modules/cesium/Build/Cesium'), to: './' } ]),
     // generating html
-    new HtmlWebpackPlugin({ template: 'src/index.html', chunksSortMode: 'none' }),
+    new HtmlWebpackPlugin({ template: 'src/index.html', chunksSortMode: 'none', inject: true }),
     // Environment helpers (when adding more properties make sure you include them in custom-typings.d.ts)
     new webpack.DefinePlugin({
       'ENV': JSON.stringify(metadata.ENV),
@@ -98,6 +105,7 @@ module.exports = {
     port: metadata.port,
     host: metadata.host,
     historyApiFallback: true,
+    contentBase: './dist/',
     watchOptions: {
       aggregateTimeout: 300,
       poll: 1000
