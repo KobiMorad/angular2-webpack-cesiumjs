@@ -1,5 +1,7 @@
 ///<reference path="custom-typings.d.ts" />
 ///<reference path="../typings/browser.d.ts" />
+require('cesium/Source/Widgets/widgets.css');
+window['CESIUM_BASE_URL'] = './';
 /*
  * Providers provided by Angular
  */

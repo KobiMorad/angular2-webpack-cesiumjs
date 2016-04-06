@@ -62,3 +62,9 @@ npm-debug.log
 .vs/
 bin/
 obj/
+src/Cesium.js
+src/ThirdParty/
+src/Widgets/
+src/Workers/
+src/assets/IAU2006_XYS/
+src/assets/Textures/

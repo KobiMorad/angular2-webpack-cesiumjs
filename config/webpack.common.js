@@ -65,15 +65,19 @@ module.exports = {
     root: helpers.root('src'),
 
     // remove other default values
-    modulesDirectories: ['node_modules'],
+    modulesDirectories: ['node_modules']
 
   },
+
+  externals: [
+      //{'cesium': 'amd ../../../node_modules/cesium/Source/Cesium'}
+  ],
 
   // Options affecting the normal modules.
   //
   // See: http://webpack.github.io/docs/configuration.html#module
   module: {
-
+    unknownContextCritical: false,
     // An array of applied pre and post loaders.
     //
     // See: http://webpack.github.io/docs/configuration.html#module-preloaders-module-postloaders
@@ -94,7 +98,8 @@ module.exports = {
         exclude: [
           // these packages have problems with their sourcemaps
           helpers.root('node_modules/rxjs'),
-          helpers.root('node_modules/@angular2-material')
+          helpers.root('node_modules/@angular2-material'),
+          helpers.root('node_modules/cesium')
         ]
       }
 
@@ -114,7 +119,7 @@ module.exports = {
       {
         test: /\.ts$/,
         loader: 'awesome-typescript-loader',
-        exclude: [/\.(spec|e2e)\.ts$/]
+        exclude: [/\.(spec|e2e)\.ts$/, helpers.root('node_modules/cesium')]
       },
 
       // Json loader support for *.json files.
@@ -131,7 +136,7 @@ module.exports = {
       // See: https://github.com/webpack/raw-loader
       {
         test: /\.css$/,
-        loader: 'raw-loader'
+        loader: 'style!css'
       },
 
       // Raw loader support for *.html
@@ -144,6 +149,10 @@ module.exports = {
         exclude: [helpers.root('src/index.html')]
       },
 
+      {
+          test: /\.(png|gif|jpg|jpeg)$/,
+          loader: 'file-loader'
+      }
     ]
 
   },
@@ -184,10 +193,20 @@ module.exports = {
     // Copies project static assets.
     //
     // See: https://www.npmjs.com/package/copy-webpack-plugin
-    new CopyWebpackPlugin([{
-      from: 'src/assets',
-      to: 'assets'
-    }]),
+    new CopyWebpackPlugin([
+        {
+          from: 'src/assets',
+          to: 'Assets'
+        },
+        {
+            from: helpers.root('node_modules/cesium/Build/Cesium'),
+            to: './'
+        },
+        {
+            from: helpers.root('node_modules/cesium/Build/Cesium'),
+            to: '../src/'
+        }
+    ]),
 
     // Plugin: HtmlWebpackPlugin
     // Description: Simplifies creation of HTML files to serve your webpack bundles.
@@ -197,7 +216,8 @@ module.exports = {
     // See: https://github.com/ampedandwired/html-webpack-plugin
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      chunksSortMode: 'none'
+      chunksSortMode: 'none',
+      inject: true
     })
 
   ],

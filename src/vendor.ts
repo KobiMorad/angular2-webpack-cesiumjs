@@ -3,6 +3,8 @@
 // at the entry point of the async loaded file. Also see custom-typings.d.ts as you also need to
 // run `typings install x` where `x` is your module
 
+import 'script!../node_modules/cesium/Build/Cesium/Cesium.js';
+
 // Angular 2
 import 'angular2/platform/browser';
 import 'angular2/platform/common_dom';
