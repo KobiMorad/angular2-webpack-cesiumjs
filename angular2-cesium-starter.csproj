@@ -79,8 +79,8 @@
     <Content Include="karma.conf.js" />
     <Content Include="packages.config" />
     <Content Include="protractor.conf.js" />
-    <Content Include="src\app\home\home.css" />
     <Content Include="src\app\home\home.html" />
+    <Content Include="src\app\viewer\viewer.html" />
     <Content Include="src\assets\css\.gitkeep" />
     <Content Include="src\assets\data.json" />
     <Content Include="src\assets\humans.txt" />
@@ -125,6 +125,8 @@
     <Content Include="nitrous-post-create.sh" />
     <Content Include="nitrous.json" />
     <Content Include="src\assets\mock-data\mock-data.json" />
+    <Content Include="src\app\home\home.scss" />
+    <Content Include="src\app\viewer\viewer.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -160,6 +162,8 @@
     <TypeScriptCompile Include="src\app\index.ts" />
     <TypeScriptCompile Include="src\app\router-active\index.ts" />
     <TypeScriptCompile Include="src\app\router-active\router-active.directive.ts" />
+    <TypeScriptCompile Include="src\app\viewer\index.ts" />
+    <TypeScriptCompile Include="src\app\viewer\viewer.component.ts" />
     <TypeScriptCompile Include="src\cesium-typings\cesium.d.ts" />
     <TypeScriptCompile Include="src\custom-typings.d.ts" />
     <TypeScriptCompile Include="src\main.browser.ts" />
