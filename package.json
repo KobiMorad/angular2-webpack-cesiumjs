@@ -129,7 +129,9 @@
     "webpack-md5-hash": "^0.0.5",
     "webpack-merge": "^0.8.4",
 
-    "script-loader": "0.6.1"
+    "script-loader": "0.6.1",
+    "sass-loader": "^3.1.2",
+    "node-sass": "3.4.2"
   },
   "repository": {
     "type": "git",

@@ -152,6 +152,11 @@ module.exports = {
       {
           test: /\.(png|gif|jpg|jpeg)$/,
           loader: 'file-loader'
+      },
+
+      {
+          test: /\.scss$/,
+          loaders: ['raw', 'sass-loader?sourceMap']
       }
     ]
 
